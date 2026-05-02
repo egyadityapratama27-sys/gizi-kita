@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<style>
+:root {
+  --green-50:  #f0fdf4;
+  --green-100: #dcfce7;
+  --green-200: #bbf7d0;
+  --green-300: #86efac;
+  --green-400: #4ade80;
+  --green-500: #22c55e;
+  --green-600: #16a34a;
+  --green-700: #15803d;
+  --green-800: #166534;
+  --green-900: #14532d;
+
+  --white:     #ffffff;
+  --gray-50:   #f8fafc;
+  --gray-100:  #f1f5f9;
+  --gray-200:  #e2e8f0;
+  --gray-400:  #94a3b8;
+  --gray-600:  #475569;
+  --gray-700:  #334155;
+  --gray-800:  #1e293b;
+  --gray-900:  #0f172a;
+
+  --font:       'Poppins', sans-serif;
+
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+  --radius-full: 999px;
+
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.07);
+  --shadow-md:  0 4px 20px rgba(22,163,74,0.10);
+  --shadow-lg:  0 8px 40px rgba(22,163,74,0.15);
+  --shadow-nav: 0 2px 24px rgba(22,163,74,0.13);
+
+  --transition: all 0.25s ease;
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--gray-800);
+  background: var(--white);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+ul { list-style: none; }
+
+/* ---- Utility Container ---- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--green-100);
+  box-shadow: var(--shadow-nav);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--green-800);
+  flex-shrink: 0;
+}
+
+.logo-icon { font-size: 1.5rem; line-height: 1; }
+
+.logo-accent {
+  color: var(--green-500);
+}
+
+/* Menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--gray-600);
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--green-50);
+  color: var(--green-700);
+}
+
+/* Search */
+.nav-actions {
+  flex-shrink: 0;
+}
+
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--green-50);
+  border: 1.5px solid var(--green-200);
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
+  cursor: text;
+  transition: var(--transition);
+}
+
+.search-wrapper:focus-within {
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+  background: var(--white);
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  color: var(--green-600);
+  flex-shrink: 0;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font);
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  width: 180px;
+}
+
+.search-input::placeholder {
+  color: var(--gray-400);
+}
+
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color: var(--white);
+  box-shadow: 0 4px 16px rgba(34,197,94,0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--green-600), var(--green-700));
+  box-shadow: 0 6px 24px rgba(34,197,94,0.45);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--green-700);
+  border: 2px solid var(--green-400);
+}
+
+.btn-outline:hover {
+  background: var(--green-50);
+  border-color: var(--green-600);
+  color: var(--green-800);
+  transform: translateY(-1px);
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+
+/* =============================================
+   SECTION SHARED STYLES
+   ============================================= */
+.section-header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 3.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  background: var(--green-100);
+  color: var(--green-700);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--gray-900);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.accent {
+  color: var(--green-600);
+}
+
+.section-desc {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
+
+
+/* =============================================
+   HERO SECTION
+   ============================================= */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(145deg, var(--green-800) 0%, var(--green-600) 55%, var(--green-500) 100%);
+  padding-top: 70px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Decorative bg circles */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 80px; left: -80px;
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-container {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Content */
+.hero-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255,255,255,0.18);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255,255,255,0.25);
+  margin-bottom: 1.4rem;
+  letter-spacing: 0.04em;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.4rem;
+  letter-spacing: -0.5px;
+}
+
+.hero-title-accent {
+  color: var(--green-200);
+  display: inline-block;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 2.2rem;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.hero-cta .btn-primary {
+  background: var(--white);
+  color: var(--green-700);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.hero-cta .btn-primary:hover {
+  background: var(--green-50);
+  color: var(--green-800);
+}
+
+.hero-cta .btn-outline {
+  border-color: rgba(255,255,255,0.55);
+  color: var(--white);
+}
+
+.hero-cta .btn-outline:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: var(--white);
+}
+
+/* Stats */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255,255,255,0.25);
+}
+
+/* Hero Illustration */
+.hero-illustration {
+  flex: 0 0 480px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-blob {
+  position: absolute;
+  width: 380px; height: 380px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: blobFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes blobFloat {
+  0%   { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; }
+  100% { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; }
+}
+
+.hero-img-wrapper {
+  position: relative;
+  width: 420px;
+  height: 420px;
+}
+
+.food-svg {
+  width: 420px;
+  height: 420px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+  animation: svgFloat 5s ease-in-out infinite alternate;
+}
+
+@keyframes svgFloat {
+  0%   { transform: translateY(0px); }
+  100% { transform: translateY(-14px); }
+}
+
+/* Floating nutrition cards */
+.float-card {
+  position: absolute;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--green-100);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  white-space: nowrap;
+}
+
+.fc-icon { font-size: 1.4rem; }
+
+.fc-val {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--green-800);
+  line-height: 1.1;
+}
+
+.fc-label {
+  font-size: 0.72rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.card-1 {
+  top: 30px; left: -30px;
+  animation: cardFloat1 4s ease-in-out infinite alternate;
+}
+
+.card-2 {
+  bottom: 80px; right: -20px;
+  animation: cardFloat2 5s ease-in-out infinite alternate;
+}
+
+.card-3 {
+  bottom: 20px; left: -10px;
+  animation: cardFloat1 6s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes cardFloat1 {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-8px); }
+}
+
+@keyframes cardFloat2 {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(8px); }
+}
+
+/* Hero bottom wave */
+.hero-wave {
+  position: relative;
+  z-index: 1;
+  line-height: 0;
+  margin-top: -1px;
+}
+
+.hero-wave svg {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+
+
+/* =============================================
+   ABOUT US SECTION
+   ============================================= */
+.about {
+  padding: 6rem 0;
+  background: var(--green-50);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text p {
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.about-text strong {
+  color: var(--green-700);
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.about-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  border: 1.5px solid var(--green-100);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-300);
+}
+
+.about-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+.about-card h3 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--green-800);
+  margin-bottom: 0.4rem;
+}
+
+.about-card p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+}
+
+
+/* =============================================
+   PROGRAM SECTION
+   ============================================= */
+.program {
+  padding: 6rem 0;
+  background: var(--white);
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+
+.program-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1.5px solid var(--green-100);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--green-300);
+}
+
+.program-card-header {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.program-emoji {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+}
+
+.program-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.program-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--green-600);
+  background: var(--green-50);
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  width: fit-content;
+}
+
+.program-card-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  line-height: 1.35;
+}
+
+.program-card-body p {
+  font-size: 0.87rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Gizi table inside card */
+.gizi-table {
+  border-top: 1.5px solid var(--green-100);
+  padding-top: 0.9rem;
+  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.gizi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.83rem;
+  color: var(--gray-600);
+}
+
+.gizi-val {
+  font-weight: 700;
+  color: var(--green-700);
+  background: var(--green-50);
+  padding: 0.1rem 0.55rem;
+  border-radius: var(--radius-sm);
+}
+
+
+/* =============================================
+   ASPIRASI SECTION
+   ============================================= */
+.aspirasi {
+  padding: 6rem 0;
+  background: linear-gradient(160deg, var(--green-50) 0%, var(--white) 100%);
+}
+
+.aspirasi-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.aspirasi-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.aspirasi-info-card {
+  background: var(--white);
+  border: 1.5px solid var(--green-100);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.aspirasi-info-card:hover {
+  border-color: var(--green-300);
+  box-shadow: var(--shadow-md);
+}
+
+.ai-icon {
+  font-size: 1.8rem;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.aspirasi-info-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--green-800);
+  margin-bottom: 0.4rem;
+}
+
+.aspirasi-info-card p {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+/* Form */
+.aspirasi-form-wrapper {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  border: 1.5px solid var(--green-100);
+  box-shadow: var(--shadow-md);
+}
+
+.aspirasi-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.form-input,
+.form-textarea {
+  font-family: var(--font);
+  font-size: 0.92rem;
+  color: var(--gray-700);
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1.1rem;
+  transition: var(--transition);
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--green-500);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--gray-400);
+}
+
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.footer {
+  background: var(--green-900);
+  color: var(--white);
+  padding: 4rem 0 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Footer brand */
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  max-width: 280px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.8);
+  transition: var(--transition);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.social-btn:hover {
+  background: var(--green-600);
+  color: var(--white);
+  border-color: var(--green-500);
+}
+
+/* Footer link columns */
+.footer-links h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--green-300);
+  margin-bottom: 1.2rem;
+}
+
+.footer-links ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-links a {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.65);
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: var(--green-300);
+  padding-left: 4px;
+}
+
+/* Footer bottom bar */
+.footer-bottom {
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+
+
+/* =============================================
+   RESPONSIVE — TABLET & MOBILE
+   ============================================= */
+
+/* Tablet: 1024px */
+@media (max-width: 1024px) {
+  .hero-illustration {
+    flex: 0 0 360px;
+  }
+
+  .hero-img-wrapper,
+  .food-svg {
+    width: 340px;
+    height: 340px;
+  }
+
+  .program-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Tablet: 768px */
+@media (max-width: 768px) {
+  /* Navbar: hide menu on smaller screens, show stacked */
+  .nav-menu {
+    display: none;
+  }
+
+  .search-input {
+    width: 130px;
+  }
+
+  /* Hero stacked */
+  .hero-container {
+    flex-direction: column;
+    padding: 3rem 1.5rem 4rem;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-desc {
+    margin: 0 auto 2rem;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+  }
+
+  .hero-illustration {
+    flex: none;
+    width: 100%;
+    order: -1;
+  }
+
+  .hero-img-wrapper,
+  .food-svg {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .hero-blob {
+    width: 280px;
+    height: 280px;
+  }
+
+  .float-card { display: none; }
+
+  /* About grid stack */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Program 1 col */
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Aspirasi stack */
+  .aspirasi-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Footer stack */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Mobile: 480px */
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 1.2rem;
+  }
+
+  .search-input {
+    width: 90px;
+  }
+
+  .container {
+    padding: 0 1.2rem;
+  }
+
+  .about,
+  .program,
+  .aspirasi {
+    padding: 4rem 0;
+  }
+
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .aspirasi-form-wrapper {
+    padding: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+}
+/* ================= MOBILE NAVBAR ================= */
+
+.menu-toggle {
+  display: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--green-700);
+  background: var(--green-100);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+
+    display: none;
+    box-shadow: var(--shadow-md);
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.7rem 0;
+  }
+}
+  </style>
+
+</head>
+
+<body>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gizi Kita — Informasi Gizi MBG</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Phosphor Icons (CDN, pure CSS-compatible SVG icons via inline) -->
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <!-- Logo -->
+      <a href="#beranda" class="nav-logo">
+        <span class="logo-icon">🌿</span>
+        <span class="logo-text">Gizi <span class="logo-accent">Kita</span></span>
+      </a>
+      <div class="menu-toggle" id="menu-toggle">
+  ☰ Menu
+</div>
+
+      <!-- Menu Links -->
+      <ul class="nav-menu">
+        <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#program" class="nav-link">Program</a></li>
+        <li><a href="#aspirasi" class="nav-link">Aspirasi</a></li>
+      </ul>
+
+      <!-- Search Button -->
+      <div class="nav-actions">
+        <label class="search-wrapper" for="nav-search">
+          <span class="search-icon">
+            <!-- Search SVG Icon -->
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </span>
+          <input type="text" id="nav-search" class="search-input" placeholder="Cari kandungan gizi…" />
+        </label>
+      </div>
+
+    </div>
+  </nav>
+  <!-- ========== END NAVBAR ========== -->
+
+
+  <!-- ========== HERO SECTION / BERANDA ========== -->
+  <section class="hero" id="beranda">
+    <div class="hero-container">
+
+      <!-- Hero Text -->
+      <div class="hero-content">
+        <div class="hero-badge">Program Makan Bergizi Gratis</div>
+        <h1 class="hero-title">
+          Kontrol Gizi Harian<br />
+          <span class="hero-title-accent">Bersama MBG</span>
+        </h1>
+        <p class="hero-desc">
+          Temukan informasi lengkap kandungan gizi menu harian Program Makanan Bergizi Gratis (MBG).
+          Pantau asupan kalori, protein, vitamin, dan mineral untuk hidup lebih sehat setiap hari.
+        </p>
+        <div class="hero-cta">
+          <a href="#program" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Program
+          </a>
+          <a href="#aspirasi" class="btn btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Aspirasi
+          </a>
+        </div>
+        <!-- Stat badges -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Menu MBG</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Gratis</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-num">34</span>
+            <span class="stat-label">Provinsi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Illustration -->
+      <div class="hero-illustration">
+        <div class="hero-blob"></div>
+        <div class="hero-img-wrapper">
+          <!-- SVG illustration of healthy food plate -->
+          <svg class="food-svg" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Plate shadow -->
+            <ellipse cx="210" cy="390" rx="130" ry="18" fill="#00000018"/>
+            <!-- Plate -->
+            <circle cx="210" cy="220" r="170" fill="#f0fdf4"/>
+            <circle cx="210" cy="220" r="155" fill="#ffffff" stroke="#d1fae5" stroke-width="3"/>
+            <!-- Rice / Nasi putih -->
+            <ellipse cx="210" cy="235" rx="90" ry="70" fill="#fef9c3"/>
+            <ellipse cx="210" cy="225" rx="85" ry="60" fill="#fef3c7"/>
+            <!-- Sayuran hijau -->
+            <ellipse cx="155" cy="195" rx="38" ry="28" fill="#4ade80"/>
+            <ellipse cx="148" cy="188" rx="28" ry="20" fill="#22c55e"/>
+            <circle cx="160" cy="182" r="12" fill="#16a34a"/>
+            <!-- Protein / Ayam -->
+            <ellipse cx="265" cy="200" rx="42" ry="32" fill="#fcd34d"/>
+            <ellipse cx="268" cy="196" rx="34" ry="25" fill="#fbbf24"/>
+            <ellipse cx="262" cy="192" rx="24" ry="16" fill="#f59e0b"/>
+            <!-- Wortel / Carrot -->
+            <ellipse cx="210" cy="278" rx="30" ry="16" fill="#fb923c"/>
+            <ellipse cx="195" cy="272" rx="18" ry="10" fill="#f97316"/>
+            <!-- Tomat -->
+            <circle cx="165" cy="255" r="16" fill="#f87171"/>
+            <circle cx="162" cy="249" r="10" fill="#ef4444"/>
+            <!-- Leaf decoration -->
+            <ellipse cx="163" cy="242" rx="8" ry="5" fill="#4ade80" transform="rotate(-30 163 242)"/>
+            <!-- Fork -->
+            <rect x="52" y="140" width="8" height="100" rx="4" fill="#a3e635" opacity="0.7"/>
+            <rect x="50" y="140" width="4" height="40" rx="2" fill="#65a30d" opacity="0.7"/>
+            <rect x="58" y="140" width="4" height="40" rx="2" fill="#65a30d" opacity="0.7"/>
+            <!-- Spoon -->
+            <rect x="356" y="150" width="8" height="90" rx="4" fill="#a3e635" opacity="0.7"/>
+            <ellipse cx="360" cy="145" rx="12" ry="16" fill="#86efac" opacity="0.7"/>
+            <!-- Stars / sparkles decoration -->
+            <circle cx="90" cy="100" r="6" fill="#bbf7d0"/>
+            <circle cx="340" cy="90" r="8" fill="#d1fae5"/>
+            <circle cx="360" cy="320" r="5" fill="#a7f3d0"/>
+            <circle cx="70" cy="330" r="7" fill="#bbf7d0"/>
+            <!-- Gizi label tags -->
+            <rect x="38" y="60" width="88" height="30" rx="15" fill="#16a34a"/>
+            <text x="82" y="80" text-anchor="middle" font-size="12" fill="white" font-family="Poppins, sans-serif" font-weight="600">Protein ✓</text>
+            <rect x="290" y="55" width="96" height="30" rx="15" fill="#15803d"/>
+            <text x="338" y="75" text-anchor="middle" font-size="12" fill="white" font-family="Poppins, sans-serif" font-weight="600">Vitamin ✓</text>
+            <rect x="150" y="30" width="120" height="30" rx="15" fill="#166534"/>
+            <text x="210" y="50" text-anchor="middle" font-size="12" fill="white" font-family="Poppins, sans-serif" font-weight="600">Kalori Seimbang ✓</text>
+          </svg>
+          <!-- Floating nutrition cards -->
+          <div class="float-card card-1">
+            <span class="fc-icon">🔥</span>
+            <div>
+              <div class="fc-val">450 kkal</div>
+              <div class="fc-label">Kalori</div>
+            </div>
+          </div>
+          <div class="float-card card-2">
+            <span class="fc-icon">💪</span>
+            <div>
+              <div class="fc-val">28 g</div>
+              <div class="fc-label">Protein</div>
+            </div>
+          </div>
+          <div class="float-card card-3">
+            <span class="fc-icon">🥦</span>
+            <div>
+              <div class="fc-val">Serat Tinggi</div>
+              <div class="fc-label">Sayuran Segar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Decorative wave bottom -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f0fdf4"/>
+      </svg>
+    </div>
+  </section>
+  <!-- ========== END HERO ========== -->
+
+
+  <!-- ========== ABOUT US ========== -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-tag">Tentang Kami</span>
+        <h2 class="section-title">Apa itu <span class="accent">Gizi Kita</span>?</h2>
+        <p class="section-desc">
+          Platform informasi resmi yang membantu masyarakat memahami kandungan gizi
+          dari setiap menu dalam Program Makanan Bergizi Gratis (MBG).
+        </p>
+      </div>
+
+      <div class="about-grid">
+
+        <!-- About text -->
+        <div class="about-text">
+          <p>
+            <strong>Gizi Kita</strong> hadir sebagai jembatan antara program pemerintah dan kesadaran gizi masyarakat.
+            Kami menyediakan informasi transparan, akurat, dan mudah dipahami mengenai menu MBG yang didistribusikan
+            di seluruh Indonesia.
+          </p>
+          <p>
+            Dengan Gizi Kita, Anda dapat melihat detail kandungan kalori, protein, karbohidrat, lemak, vitamin,
+            dan mineral dari setiap sajian MBG — membantu keluarga Indonesia hidup lebih sehat dan sadar gizi.
+          </p>
+          <a href="#program" class="btn btn-primary" style="margin-top: 1rem; display: inline-flex;">
+            Lihat Program
+          </a>
+        </div>
+
+        <!-- About cards -->
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">📊</div>
+            <h3>Info Gizi Lengkap</h3>
+            <p>Data kalori, protein, vitamin, dan mineral setiap menu MBG tersedia lengkap dan terstruktur.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🇮🇩</div>
+            <h3>Seluruh Indonesia</h3>
+            <p>Mencakup distribusi menu MBG di 34 provinsi dengan informasi lokal yang relevan.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🔍</div>
+            <h3>Mudah Dicari</h3>
+            <p>Cari menu berdasarkan nama, kandungan gizi, atau wilayah distribusi dengan mudah.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">✅</div>
+            <h3>Data Terpercaya</h3>
+            <p>Informasi bersumber dari standar gizi nasional dan pemantauan program MBG resmi.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ========== END ABOUT ========== -->
+
+
+  <!-- ========== PROGRAM ========== -->
+  <section class="program" id="program">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-tag">Menu Unggulan</span>
+        <h2 class="section-title">Program <span class="accent">Menu MBG</span></h2>
+        <p class="section-desc">
+          Berikut beberapa menu andalan Program MBG beserta informasi kandungan gizinya.
+        </p>
+      </div>
+
+      <div class="program-grid">
+
+        <!-- Card 1 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #bbf7d0, #86efac);">
+            <span class="program-emoji">🍱</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Menu Utama</span>
+            <h3>Nasi + Ayam Panggang + Sayur</h3>
+            <p>Menu seimbang dengan karbohidrat dari nasi, protein dari ayam, dan serat dari sayuran segar.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">450 kkal</span></div>
+              <div class="gizi-row"><span>Protein</span><span class="gizi-val">28 g</span></div>
+              <div class="gizi-row"><span>Karbohidrat</span><span class="gizi-val">55 g</span></div>
+              <div class="gizi-row"><span>Lemak</span><span class="gizi-val">10 g</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #a7f3d0, #6ee7b7);">
+            <span class="program-emoji">🥗</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Menu Sayur</span>
+            <h3>Gado-Gado Sayuran + Tahu Tempe</h3>
+            <p>Kaya serat dan protein nabati dari kombinasi sayuran segar, tahu, dan tempe dengan bumbu kacang.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">380 kkal</span></div>
+              <div class="gizi-row"><span>Protein</span><span class="gizi-val">22 g</span></div>
+              <div class="gizi-row"><span>Karbohidrat</span><span class="gizi-val">42 g</span></div>
+              <div class="gizi-row"><span>Serat</span><span class="gizi-val">8 g</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #d1fae5, #a3e635);">
+            <span class="program-emoji">🍲</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Menu Sup</span>
+            <h3>Sup Ikan + Nasi + Buah Segar</h3>
+            <p>Sumber Omega-3 dari ikan segar, dilengkapi vitamin C alami dari buah pilihan musiman.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">420 kkal</span></div>
+              <div class="gizi-row"><span>Protein</span><span class="gizi-val">32 g</span></div>
+              <div class="gizi-row"><span>Omega-3</span><span class="gizi-val">1.2 g</span></div>
+              <div class="gizi-row"><span>Vitamin C</span><span class="gizi-val">40 mg</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #ecfccb, #bbf7d0);">
+            <span class="program-emoji">🥛</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Snack Sehat</span>
+            <h3>Susu + Buah Potong + Biskuit Gandum</h3>
+            <p>Camilan bergizi untuk anak-anak dengan kalsium dari susu dan vitamin dari buah segar.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">210 kkal</span></div>
+              <div class="gizi-row"><span>Kalsium</span><span class="gizi-val">300 mg</span></div>
+              <div class="gizi-row"><span>Vitamin D</span><span class="gizi-val">5 mcg</span></div>
+              <div class="gizi-row"><span>Gula</span><span class="gizi-val">12 g</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #86efac, #4ade80);">
+            <span class="program-emoji">🥩</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Protein Tinggi</span>
+            <h3>Nasi + Telur Dadar + Tumis Kangkung</h3>
+            <p>Pilihan ekonomis namun kaya gizi, telur sebagai sumber protein lengkap dan kangkung tinggi zat besi.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">390 kkal</span></div>
+              <div class="gizi-row"><span>Protein</span><span class="gizi-val">20 g</span></div>
+              <div class="gizi-row"><span>Zat Besi</span><span class="gizi-val">4 mg</span></div>
+              <div class="gizi-row"><span>Vitamin A</span><span class="gizi-val">320 mcg</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="program-card">
+          <div class="program-card-header" style="background: linear-gradient(135deg, #d1fae5, #6ee7b7);">
+            <span class="program-emoji">🌾</span>
+          </div>
+          <div class="program-card-body">
+            <span class="program-category">Menu Lokal</span>
+            <h3>Bubur Merah Putih + Lauk Pauk</h3>
+            <p>Menu berbasis pangan lokal yang kaya karbohidrat kompleks dan mudah dicerna semua usia.</p>
+            <div class="gizi-table">
+              <div class="gizi-row"><span>Kalori</span><span class="gizi-val">360 kkal</span></div>
+              <div class="gizi-row"><span>Karbohidrat</span><span class="gizi-val">68 g</span></div>
+              <div class="gizi-row"><span>Protein</span><span class="gizi-val">14 g</span></div>
+              <div class="gizi-row"><span>Serat</span><span class="gizi-val">5 g</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end program-grid -->
+    </div>
+  </section>
+  <!-- ========== END PROGRAM ========== -->
+
+
+  <!-- ========== ASPIRASI ========== -->
+  <section class="aspirasi" id="aspirasi">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="section-tag">Suara Anda</span>
+        <h2 class="section-title">Sampaikan <span class="accent">Aspirasi</span> Anda</h2>
+        <p class="section-desc">
+          Kami terbuka untuk masukan, saran, dan aspirasi Anda demi program MBG yang lebih baik.
+        </p>
+      </div>
+
+      <div class="aspirasi-wrapper">
+
+        <!-- Info side -->
+        <div class="aspirasi-info">
+          <div class="aspirasi-info-card">
+            <span class="ai-icon">📬</span>
+            <h3>Kirim Pendapat Anda</h3>
+            <p>Aspirasi Anda sangat berarti untuk pengembangan dan perbaikan program MBG di seluruh Indonesia.</p>
+          </div>
+          <div class="aspirasi-info-card">
+            <span class="ai-icon">🤝</span>
+            <h3>Direspon dalam 3 Hari</h3>
+            <p>Tim kami berkomitmen merespons setiap aspirasi yang masuk dalam waktu 1–3 hari kerja.</p>
+          </div>
+          <div class="aspirasi-info-card">
+            <span class="ai-icon">🔒</span>
+            <h3>Data Anda Aman</h3>
+            <p>Informasi pribadi Anda dijaga kerahasiaannya dan hanya digunakan untuk keperluan tindak lanjut program.</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="aspirasi-form-wrapper">
+          <form class="aspirasi-form" action="#" method="post">
+
+            <div class="form-group">
+              <label for="nama" class="form-label">Nama Lengkap</label>
+              <input
+                type="text"
+                id="nama"
+                name="nama"
+                class="form-input"
+                placeholder="Masukkan nama lengkap Anda"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Alamat Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="contoh@email.com"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="pesan" class="form-label">Pesan / Aspirasi</label>
+              <textarea
+                id="pesan"
+                name="pesan"
+                class="form-textarea"
+                placeholder="Tuliskan aspirasi, saran, atau masukan Anda di sini…"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Kirim Aspirasi
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- ========== END ASPIRASI ========== -->
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-icon">🌿</span>
+            <span class="logo-text">Gizi <span class="logo-accent">Kita</span></span>
+          </div>
+          <p class="footer-tagline">
+            Platform informasi kandungan gizi Program Makanan Bergizi Gratis (MBG) untuk Indonesia yang lebih sehat.
+          </p>
+          <!-- Social media -->
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter/X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.4 19.54C5.12 20 12 20 12 20s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Nav links -->
+        <div class="footer-links">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#program">Program</a></li>
+            <li><a href="#aspirasi">Aspirasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Program links -->
+        <div class="footer-links">
+          <h4>Program</h4>
+          <ul>
+            <li><a href="#">Menu MBG</a></li>
+            <li><a href="#">Cek Gizi</a></li>
+            <li><a href="#">Distribusi</a></li>
+            <li><a href="#">Jadwal</a></li>
+          </ul>
+        </div>
+
+        <!-- Info -->
+        <div class="footer-links">
+          <h4>Informasi</h4>
+          <ul>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat Penggunaan</a></li>
+            <li><a href="#">Hubungi Kami</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+
+      </div><!-- end footer-grid -->
+
+      <div class="footer-bottom">
+        <p>© 2026 Gizi Kita | Website Informasi Gizi MBG</p>
+        <p>Dibuat dengan 💚 untuk Indonesia Sehat</p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- ========== END FOOTER ========== -->
+
+</body>
+<script>
+const toggle = document.getElementById("menu-toggle");
+const menu = document.querySelector(".nav-menu");
+
+toggle.addEventListener("click", () => {
+  menu.classList.toggle("active");
+});
+</script>
+
+</html>
